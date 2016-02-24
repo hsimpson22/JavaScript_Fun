@@ -15,8 +15,8 @@
 
 	#box{
 		background-color: #B464AE;
-		width: 200px;
-		height: 200px;
+		width: 100px;
+		height: 100px;
 		position:relative;
 	}
 	.bold{
@@ -61,7 +61,7 @@
 	
 	function makeBox(){
 		var time=Math.random()*5000;
-		var positions = [Math.floor(Math.random()*400),Math.floor(Math.random()*400),Math.floor(Math.random()*400),Math.floor(Math.random()*400)];
+		var positions = [Math.floor(Math.random()*200),Math.floor(Math.random()*300),Math.floor(Math.random()*100),Math.floor(Math.random()*200)];
 		setTimeout(function() {
 			//set it to randomly choose between box + circle shape
 			if (Math.random()>0.5){
@@ -91,7 +91,7 @@
 		avRT = sumRTs/reactTimes.length;
 		maxRT = getMaxOfArray(reactTimes);
 		minRT = getMinOfArray(reactTimes);
-		document.getElementById("results").innerHTML="Average RT: "+avRT+"\t"+"Best Time: "+minRT+"Worst Time: "+maxRT;
+		document.getElementById("results").innerHTML="Average RT: "+avRT+"  "+"Best Time: "+minRT+"  Worst Time: "+maxRT;
 		//document.getElementById("Done").innerHTML="Play Again!";
 		reactionTimeAll=[];
 		playing = false;
