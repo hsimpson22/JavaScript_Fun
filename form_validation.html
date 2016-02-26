@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+	<title>jQuery Practice</title>
+	
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-type" content = "text/html; charset=utf-8" />
+	<meta name = "viewport" content = "width=device-width,initial-scale=1" />
+	<script type="text/javascript" src="jquery-1.12.1.min.js"></script>
+
+<style>
+	#wrapper{
+	width:600px;
+	margin:0 auto;
+	font-family: helvetica;
+	font-size:1.2em;
+	}
+	
+	input {
+		width:400px;
+		height: 30px;
+		padding:7px;
+		border-radius:5px;
+		font-size: 1.2em;
+		border:1px solid grey;
+		margin-bottom: 10px;
+	}
+	
+	label {
+		width:100px;
+		float:left;
+		padding-top:10px;
+	}
+	
+	#submitButton{
+		height:50px;
+		margin-left:250px;
+		width:150px;
+	}
+	
+	#error{
+		color:red;
+		margin:20px;
+	}
+	
+	
+</style>
+
+
+</head>
+
+<body>
+<div id="wrapper">
+<div id="error"></div>
+<form id="validationForm">
+	<label for="email">Email</label>
+	<input type="text" id="email" />
+	
+	<label for="phone">Telephone</label>
+	<input name="phone" id="phone"/>
+	
+	<label for="pass">Password</label>
+	<input name="pass" type="password" id="pass"/>
+	
+	<label for="pass">Confirm Password</label>
+	<input name="pass" type="password" id="confirm"></label>
+	
+	<input id="submitButton" type="submit" value="Submit"/>
+	
+</form>
+</div>
+
+<script>
+	
+	$("#validationForm").submit(function(event){
+		
+		var errorMessage="";
+		
+		event.preventDefault();
+		
+		function isValidEmailAddress(emailAddress){
+		
+		var pattern = new RegExp(/^[^\s@]+@[^\s@.]+[^\s@]+\.[^\s@.]+$/);
+		return pattern.test(emailAddress);
+	};
+	
+		function isValidPhoneNum(phonenum){
+		
+		var pattern = new RegExp(/^\d[\d\-]+\d$/);
+		return pattern.test(phonenum);
+	};
+	
+	
+		if (!isValidEmailAddress($("#email").val())){
+			var bademail = $("#email").val();
+			if (bademail==""){
+				errorMessage = "<br/>Please enter an email address";
+			}
+			else {
+			errorMessage+=("<br/>"+bademail + " not valid email");
+			}
+		}
+		
+
+	
+		if (!isValidPhoneNum($("#phone").val())){
+			var badphone = $("#phone").val();
+			if (badphone==""){
+			errorMessage+= ("<br/>Please enter a phone number");
+			}
+			else {
+			errorMessage+=("<br/>"+badphone + " not valid phone number");
+			}
+		}
+		
+			if ($("#pass").val()!=$("#confirm").val()){
+				errorMessage+=("<br/> Passwords do not match");
+				
+			}
+		if (errorMessage==""){
+			$("#error").html("Success!");
+		} else{
+		$("#error").html(errorMessage);
+		}
+	});
+</script>
+		
+</body>
+</html>
